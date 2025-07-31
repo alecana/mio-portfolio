@@ -272,4 +272,4 @@ footer a { color: var(--text-color); text-decoration: none; font-weight: 500;}
     
     header nav { display: none; }
     .menu-toggle { display: flex; flex-direction: column; justify-content: space-around; width: 30px; height: 25px; }
-    .menu
+    /* .menu */}
