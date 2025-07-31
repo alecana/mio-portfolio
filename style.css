@@ -16,15 +16,9 @@ body { background-color: var(--bg-color); color: var(--text-color); font-family:
 a, button, .project-menu li, .highlight-keyword, .close-viewer { cursor: none; }
 
 /* --- CURSORE PERSONALIZZATO --- */
-.cursor { position: fixed; width: 25px; height: 25px; border: 1px solid var(--text-color); border-radius: 50%; transform: translate(-50%, -50%); pointer-events: none; z-index: 9999; mix-blend-mode: difference; background-color: white; transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, mix-blend-mode 0.3s ease, opacity 0.3s ease; }
-.cursor.cursor-hidden { 
-    opacity: 0; 
-}
-.cursor-grow { 
-    width: 60px; height: 60px; 
-    mix-blend-mode: normal; 
-    border-width: 0; 
-}
+.cursor { position: fixed; width: 25px; height: 25px; border: 1px solid var(--text-color); border-radius: 50%; transform: translate(-50%, -50%); pointer-events: none; z-index: 9999; mix-blend-mode: difference; background-color: white; transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, mix-blend-mode 0.3s ease; opacity: 1; }
+.cursor.cursor-hidden { opacity: 0; }
+.cursor-grow { width: 60px; height: 60px; mix-blend-mode: normal; border-width: 0; }
 .cursor-invert-grow { width: 60px; height: 60px; border-color: transparent; }
 
 /* --- HEADER --- */
@@ -36,7 +30,7 @@ header nav a { text-decoration: none; color: #f5f5f5; font-weight: 500; position
 header nav a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: var(--hero-bg-color); transition: width 0.3s ease; }
 header nav a:hover { color: #fff; }
 header nav a:hover::after { width: 100%; }
-.menu-toggle { display: none; }
+.menu-toggle { display: none; background: none; border: none; z-index: 1001; }
 
 /* --- LAYOUT E SEZIONI --- */
 main { background-color: var(--bg-color); }
@@ -69,18 +63,12 @@ section h2 { font-family: var(--font-secondary); font-size: clamp(2.5rem, 5vw, 4
 /* --- SEZIONE PROCESSO TESTUALE --- */
 #process { background-color: #1a1a1a; color: #f0f0f0; border-bottom-color: #2c2c2c; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 8rem 0; }
 #process h2 { color: var(--hero-bg-color); margin-bottom: 3rem; }
-.process-text-flow { width: 100%; padding: 0 4rem; }
+.process-text-flow { width: 100%; padding: 0 8rem; }
 .process-text-flow p { font-family: var(--font-secondary); font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.4; font-weight: 700; }
 .process-step { color: #444; transition: color 0.4s ease; }
 .process-step.is-active { color: #f0f0f0; }
-.process-step strong, .process-step .highlight-yellow {
-    color: #444; /* Di base, anche i numeri e le keyword sono grigi */
-    font-weight: 800;
-    transition: color 0.4s ease;
-}
-.process-step.is-active strong, .process-step.is-active .highlight-yellow {
-    color: var(--hero-bg-color); /* Si colorano di giallo SOLO quando la riga è attiva */
-}
+.process-step strong, .process-step .highlight-yellow { color: #444; font-weight: 800; transition: color 0.4s ease; }
+.process-step.is-active strong, .process-step.is-active .highlight-yellow { color: var(--hero-bg-color); }
 
 /* --- MENU PROGETTI --- */
 #projects h2 { text-align: center; }
@@ -142,3 +130,98 @@ section h2 { font-family: var(--font-secondary); font-size: clamp(2.5rem, 5vw, 4
 footer { padding: 2rem 0; text-align: center; color: #666; border-top: 1px solid var(--border-color); }
 footer .container { display: flex; justify-content: space-between; align-items: center; }
 footer a { color: var(--text-color); text-decoration: none; font-weight: 500;}
+
+/* --- ANIMAZIONI --- */
+.animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease; }
+.animate-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+
+/*
+============================================================
+   DESIGN RESPONSIVE OTTIMIZZATO
+============================================================
+*/
+
+/* --- TABLET E FINESTRE INTERMEDIE (sotto 1024px) --- */
+@media (max-width: 1024px) {
+    .container { padding: 0 1.5rem; }
+    section { padding: 6rem 0; }
+    
+    /* HEADER E MENU HAMBURGER */
+    header { padding: 1rem 1.5rem; }
+    header nav { 
+        position: fixed; 
+        top: 0; 
+        left: 0; 
+        width: 100%; 
+        height: 100vh;
+        background-color: rgba(20, 20, 20, 0.95); 
+        backdrop-filter: blur(10px);
+        display: flex;
+        flex-direction: column; 
+        justify-content: center; 
+        align-items: center; 
+        transform: translateY(-100%); 
+        opacity: 0; 
+        pointer-events: none; 
+        transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.4s ease;
+        gap: 3rem; 
+    }
+    header.nav-active nav { 
+        transform: translateY(0); 
+        opacity: 1; 
+        pointer-events: auto; 
+    }
+    header nav a { font-size: 1.8rem; }
+    .menu-toggle { display: flex; flex-direction: column; justify-content: space-around; width: 30px; height: 25px; background: transparent; border: none; z-index: 1002; }
+    .menu-toggle span { width: 100%; height: 3px; background-color: var(--bg-color); border-radius: 5px; transition: all 0.3s ease; }
+    header.nav-active .menu-toggle span:nth-child(1) { transform: rotate(45deg) translate(7px, 7px); }
+    header.nav-active .menu-toggle span:nth-child(2) { opacity: 0; }
+    header.nav-active .menu-toggle span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+
+    /* LAYOUT HERO */
+    #hero { padding: 120px 2rem 0; text-align: center; flex-direction: column; justify-content: flex-start; min-height: 0; height: auto; }
+    .hero-new-content { max-width: 100%; margin-bottom: 3rem; }
+    .hero-profile-image { position: relative; display: block; height: auto; width: 80%; max-width: 350px; right: auto; bottom: auto; }
+    .hero-logo-3d { display: none; }
+    
+    /* LAYOUT ABOUT */
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .about-image-container { grid-row: 1; max-width: 280px; margin: 0 auto 2rem; }
+    .about-text-content { text-align: center; }
+    .about-heading { justify-content: center; }
+
+    /* LAYOUT PROCESSO */
+    .process-text-flow { padding: 0 2rem; }
+
+    #projects h2, #skills h2, #contact h2 { text-align: center; }
+}
+
+/* --- SMARTPHONE (sotto 768px) --- */
+@media (max-width: 768px) {
+    body { cursor: auto; }
+    .cursor { display: none; }
+    a, button, .project-menu li, .highlight-keyword, .close-viewer { cursor: pointer; }
+    
+    section { padding: 4rem 0; }
+    #hero { padding: 100px 1.5rem 0; }
+    #hero h1 { font-size: clamp(2.5rem, 12vw, 4rem); }
+    .hero-profile-image { max-width: 300px; }
+    
+    /* PROGETTI MOBILE */
+    .project-menu li { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 0; }
+    .project-preview { display: block; opacity: 1; transform: scale(1); }
+    .project-menu li::after { display: none; }
+    .project-title { font-size: clamp(2rem, 8vw, 2.8rem); }
+
+    /* MODALE MOBILE */
+    .modal-nav { display: none; }
+    .project-details-grid { grid-template-columns: 1fr; gap: 1.5rem; padding: 1.5rem; max-height: 80vh; overflow-y: auto; }
+    .project-description { grid-row: 2; }
+    .close-viewer { font-size: 2.5rem; top: 1rem; right: 1rem; }
+
+    .process-text-flow { padding: 0 1rem; }
+
+    .skills-marquee span { font-size: clamp(2rem, 8vw, 3rem); padding: 0 1rem; }
+
+    footer .container { flex-direction: column; gap: 1rem; }
+}
