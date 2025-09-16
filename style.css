@@ -221,8 +221,11 @@ section h2 { font-family: var(--font-secondary); font-size: clamp(2.5rem, 5vw, 4
     overflow: hidden; /* Aggiunto per prevenire scroll */
 }
 .project-viewer.visible { opacity: 1; pointer-events: auto; }
-.project-viewer-content { position: relative; width: 100%; max-width: 1200px; }
-.close-viewer { cursor: none; position: fixed; top: 2rem; right: 2rem; background: none; border: none; color: white; font-size: 3rem; opacity: 0.8; z-index: 2002; transition: transform 0.3s ease; }
+.project-viewer-content { 
+    position: relative; 
+    width: 100%; 
+    max-width: 1000px; /* Ridotto da 1200px */
+}.close-viewer { cursor: none; position: fixed; top: 2rem; right: 2rem; background: none; border: none; color: white; font-size: 3rem; opacity: 0.8; z-index: 2002; transition: transform 0.3s ease; }
 .close-viewer:hover { opacity: 1; transform: rotate(90deg); }
 .project-card-content { 
     position: absolute; 
