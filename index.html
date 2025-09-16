@@ -15,6 +15,7 @@
 <body>
 
     <div class="cursor"></div>
+    <div class="page-transition-overlay"></div>
 
     <header>
         <a href="#" class="logo">
@@ -36,8 +37,8 @@
     <main>
         <section id="hero">
             <div class="hero-new-content">
-                <h1>Hey there, I’m<br>Alessandro Canalicchio.</h1>
-                <p>I’ve got just a few seconds to earn your attention — I’ll make them count.</p>
+                <h1>Hey ciao, sono<br>Alessandro Canalicchio.</h1>
+                <p>ho pochi secondi per attirare la tua attenzione — proviamo?</p>
             </div>
             <img src="images/busto-profilo.png" alt="Foto di Alessandro Canalicchio" class="hero-profile-image">
             <div class="hero-logo-3d">
@@ -53,15 +54,26 @@
                             <img src="images/alecana-logo.png" alt="Logo" class="about-heading-logo">
                             Mi presento
                         </h2>
-                        <!-- MODIFICATO: Rimossi i link, lasciati gli span -->
-                        <p>Sono Alessandro Canalicchio, ho 20 anni e vivo tra i corsi di marketing a Milano e la mia passione per la <span class="highlight-keyword">creatività</span> che lascia il segno, con i <span class="highlight-keyword">dati</span> che le danno un senso.</p>
-                        <p>Ho sempre pensato che il marketing migliore sia quello che non sembra marketing. È quello che sa ascoltare. Capire un trend, un bisogno, una conversazione. È così che creo progetti che non sono solo "contenuti", ma pezzi di comunicazione che parlano una lingua onesta.</p>
-                        <p>Sono fatto di tutto quello che vedo: i <span class="highlight-keyword">viaggi</span> che mi aprono la mente, l'energia della <span class="highlight-keyword">musica dal vivo</span>, le storie che sento ogni giorno. Lavorare con le persone mi ha confermato una cosa: l'<span class="highlight-keyword">empatia</span> vale più di qualsiasi budget.</p>
-                        <p>Adesso, la mia sfida è portare tutto questo nel digitale. Pronto a far muovere le idee, sul serio.</p>
+                        <p>Mi chiamo Alessandro Canalicchio, un creativo audace di 20 anni, sempre alla ricerca di soluzioni non convenzionali. Le mie esperienze di vita, dai viaggi al lavoro come receptionist, arbitro di calcio, e giornalista musicale per Rockon.it, hanno plasmato una prospettiva unica sul mondo.</p>
+                        <p>Questo percorso eterogeneo è la mia forza, un mix che alimenta la mia curiosità e la capacità di imparare velocemente. Credo che le idee migliori nascano dall'incontro tra mondi diversi.</p>
+                        <p>Lavoro nel Social Media Marketing e nell'Advertising con un obiettivo preciso: trasformare le idee in messaggi autentici e utili per il pubblico. Questo portfolio è un viaggio attraverso il mio modo di pensare, un luogo dove la creatività si unisce alla strategia.</p>
                     </div>
                     <div class="about-image-container">
-                        <div class="about-image-wrapper">
-                            <img src="images/foto-profilo.webp" alt="Foto di Alessandro Canalicchio">
+                        <div class="profile-photo-area">
+                            <div class="about-image-wrapper">
+                                <img src="images/foto-profilo.webp" alt="Foto di Alessandro Canalicchio">
+                            </div>
+        
+                            <div class="interactive-elements">
+                                <svg class="circling-text" viewBox="0 0 100 100">
+                                    <path id="text-path" fill="none" d="M 0,50 a 50,50 0 1,1 100,0 a 50,50 0 1,1 -100,0"></path>
+                                    <text fill="var(--hero-bg-color)" font-family="var(--font-secondary)" font-size="9" letter-spacing="0.5">
+                                        <textPath href="#text-path">
+                                            CLICCA LA FOTO! • CLICCA LA FOTO! • CLICCA LA FOTO! •
+                                        </textPath>
+                                    </text>
+                                </svg>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -90,7 +102,7 @@
             <div class="process-text-flow">
                 <p>
                     <span class="process-step" data-step="1"><strong>(01)</strong> La base di tutto è la <span class="highlight-yellow">ricerca</span>. Studio il mercato, analizzo i competitor e, soprattutto, ascolto il pubblico per capire i bisogni reali. I dati guidano ogni intuizione.</span>
-                    <span class="process-step" data-step="2"><strong>(02)</strong> Poi, traduco i dati in una <span class="highlight-yellow">strategia</span>. Sviluppo concept creativi che non sono solo belli da vedere, ma che funzionano per raggiungere obiettivi precisi e misurabili.</span>
+                    <span class="process-step" data-step="2"><strong>(02)</strong> Poi, traduco i dati in una <span class="highlight-yellow">strategia</span>. Sviluppo concept creativi che non siano solo belli da vedere, ma che funzionino per raggiungere obiettivi precisi e misurabili.</span>
                     <span class="process-step" data-step="3"><strong>(03)</strong> È il momento della <span class="highlight-yellow">creazione</span>: dalla grafica al copywriting, dalla gestione delle ads ai contenuti social. Trasformo la strategia in asset concreti, curando ogni singolo dettaglio.</span>
                     <span class="process-step" data-step="4"><strong>(04)</strong> Il progetto va online, ma il lavoro non finisce. Con il <span class="highlight-yellow">lancio</span> inizia il monitoraggio delle performance, l'analisi dei risultati e l'ottimizzazione costante per massimizzare l'impatto.</span>
                 </p>
@@ -129,7 +141,7 @@
             <div id="project-1" class="project-card-content">
                 <div class="project-details-grid">
                     <div class="project-visual"><iframe loading="lazy" style="width: 100%; height: 100%; border: none;" src="https://www.canva.com/design/DAGUTohQMJI/zy2YRC9Dppb5qykvPsAmWQ/view?embed" allowfullscreen></iframe></div>
-                    <div class="project-description"><h3>Bottega Circolare</h3><p class="project-meta"><strong>RUOLO:</strong> Project Lead & Business Planner<br><strong>QUANDO:</strong> Giugno 2025</p><div class="project-body"><p>Come si lancia un brand di moda sostenibile partendo da zero? Ho guidato questo progetto definendo l'intera strategia di go-to-market. Ho curato la grafica della presentazione, ma soprattutto il business plan, con un'analisi dettagliata dei costi e l'allocazione delle risorse economiche per garantire la sostenibilità del lancio.</p></div></div>
+                    <div class="project-description"><h3>Bottega Circolare</h3><p class="project-meta"><strong>RUOLO:</strong> Project Lead & Business Planner<br><strong>QUANDO:</strong> Giugno 2025</p><div class="project-body"><p>Come si lancia un brand di moda sostenibile partendo da zero? Ho guidato questo progetto definendo la strategia di go-to-market. Ho curato la grafica della presentazione, ma soprattutto il business plan, con un'analisi dettagliata dei costi e l'allocazione delle risorse economiche per garantire la sostenibilità del lancio.</p></div></div>
                 </div>
             </div>
             <div id="project-2" class="project-card-content">
@@ -141,7 +153,7 @@
             <div id="project-3" class="project-card-content">
                  <div class="project-details-grid">
                     <div class="project-visual"><iframe loading="lazy" style="width: 100%; height: 100%; border: none;" src="https://www.canva.com/design/DAGcbySsIB0/UO8YSMKXEEnSsGWoslDzQw/view?embed" allowfullscreen></iframe></div>
-                    <div class="project-description"><h3>Rush Market (ADV)</h3><p class="project-meta"><strong>RUOLO:</strong> Concept & Art Direction<br><strong>QUANDO:</strong> Febbraio 2025</p><div class="project-body"><p>Ecco come nasce il concept di un supermercato urbano ultra-veloce. Ho guidato il progetto, definendo la direzione generale e le idee innovative. Ho curato personalmente la grafica della presentazione e la creazione di mockup e contenuti pubblicitari per simulare un lancio sul mercato.</p></div></div>
+                    <div class="project-description"><h3>Rush Market (ADV)</h3><p class="project-meta"><strong>RUOLO:</strong> Concept & Art Direction<br><strong>QUANDO:</strong> Febbraio 2025</p><div class="project-body"><p>Ecco come nasce il concept di un supermercato urbano ultra-veloce. Ho guidato il progetto, definendo la direzione generale e sviluppando approcci innovativi. Ho curato personalmente la grafica della presentazione e la creazione di mockup e contenuti pubblicitari per simulare un lancio sul mercato.</p></div></div>
                 </div>
             </div>
             <div id="project-4" class="project-card-content">
@@ -153,18 +165,20 @@
             <div id="project-5" class="project-card-content">
                 <div class="project-details-grid">
                     <div class="project-visual"><iframe loading="lazy" style="width: 100%; height: 100%; border: none;" src="https://www.canva.com/design/DAGmrvXznOs/I5v92rorIOBREm6wNAim6A/view?embed" allowfullscreen></iframe></div>
-                    <div class="project-description"><h3>Rehabilia (Project Work)</h3><p class="project-meta"><strong>RUOLO:</strong> Creative Strategist & Content Creator<br><strong>QUANDO:</strong> Ottobre 2024</p><div class="project-body"><p>Come per Lundini, ho gestito l'intero flusso creativo: dalla gestione della grafica della presentazione alla creazione dei contenuti. Ho contribuito a definire la strategia digitale per rafforzare la loro presenza online, concentrandomi su contenuti che trasmettessero fiducia e raggiungessero le persone nel momento del bisogno.</p></div></div>
+                    <div class="project-description"><h3>Rehabilia (Project Work)</h3><p class="project-meta"><strong>RUOLO:</strong> Creative Strategist & Content Creator<br><strong>QUANDO:</strong> Ottobre 2024</p><div class="project-body"><p>Come per Lundini, ho gestito il flusso creativo e lo storytelling: dalla gestione della grafica della presentazione alla creazione dei contenuti. Ho contribuito a definire la strategia digitale per rafforzare la loro presenza online, concentrandomi su contenuti che trasmettessero fiducia e raggiungessero le persone nel momento giusto.</p></div></div>
                 </div>
             </div>
         </div>
         <div class="modal-nav prev">
-            <div class="nav-arrow">←</div>
-            <div class="nav-preview-orb"></div>
-        </div>
-        <div class="modal-nav next">
-            <div class="nav-arrow">→</div>
-            <div class="nav-preview-orb"></div>
-        </div>
+    <div class="nav-preview-orb"></div>
+    <div class="nav-arrow">←</div>
+    <span class="nav-label">Previous<br>Project</span>
+</div>
+<div class="modal-nav next">
+    <div class="nav-preview-orb"></div>
+    <div class="nav-arrow">→</div>
+    <span class="nav-label">Next<br>Project</span>
+</div>
     </div>
 
     <footer>

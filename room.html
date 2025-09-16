@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Stanza di Alessandro</title>
+
+    <link rel="icon" type="image/png" href="images/alecana-logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Syne:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="room-style.css">
+</head>
+<body class="room-page">
+
+    <div class="cursor"></div>
+    <div class="page-transition-overlay is-active"></div>
+    
+    <div class="room-container">
+        
+        <div class="room-image-panel">
+            <div class="panel-sidebar">
+                <a href="index.html" class="back-button" aria-label="Torna al portfolio">
+                    <img src="images/alecana-logo.png" alt="Torna al Portfolio">
+                </a>
+                <div class="marquee-container">
+                    <div class="marquee-wrapper">
+                        <div class="marquee-item">Stanza di Alessandro</div>
+                        <div class="marquee-item">Stanza di Alessandro</div>
+                        <div class="marquee-item">Stanza di Alessandro</div>
+                        <div class="marquee-item">Stanza di Alessandro</div>
+                    </div>
+                </div>
+            </div>
+            <div class="image-holder">
+                <img src="images/room.JPG" alt="La stanza di Alessandro">
+            </div>
+        </div>
+
+        <div class="room-text-panel">
+            
+            <div class="text-slide active" data-color="#1a1a1a">
+                <div class="slide-content">
+                    <h1>Grazie per aver bussato</h1>
+                    <div class="intro-text">
+                        <p>Una stanza in cui passo parte del mio tempo non è solo un luogo fisico: è lo specchio più autentico di chi sono. Ogni dettaglio – libri, appunti, oggetti scelti e lasciati lì – racconta il mio processo creativo e di studio meglio di qualsiasi presentazione o curriculum. È lì che si vede cosa mi ispira, come organizzo le idee, quali interessi mi muovono davvero. Uno spazio personale non descrive, ma mostra, e per questo parla di me in modo più diretto e sincero di qualsiasi parola.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-slide" data-color="#00405c">
+                <div class="slide-content">
+                    <p>Sulla scrivania convivono un iPad con Apple Pencil e un quaderno pieno di pennarelli. Il digitale serve a mettere ordine tra appunti, strategie e progetti, ma la carta resta lo spazio in cui le idee possono scorrere senza schemi. È in questo incrocio tra precisione e spontaneità che nasce il mio modo di lavorare: organizzato, ma sempre pronto a farsi sorprendere.</p>
+                </div>
+            </div>
+
+            <div class="text-slide" data-color="#4a0e3a">
+                <div class="slide-content">
+                    <p>Alle pareti e sulle mensole ci sono vinili, poster e biglietti di concerti (se non si capisse, mi piace molto la musica). Non sono semplici ricordi, ma fonti di ispirazione quotidiana: un mix di vintage e contemporaneo, nostalgia e nuove tendenze. In fondo, i social media funzionano un po’ allo stesso modo: tra memoria collettiva e novità costante.</p>
+                </div>
+            </div>
+
+            <div class="text-slide" data-color="#7d3c00">
+                <div class="slide-content">
+                    <p>In mezzo agli oggetti di tutti i giorni spunta anche un bicchiere Starbucks o la foto di un evento. Piccoli simboli che parlano di branding vissuto, non solo studiato. Mi piace osservare come i marchi entrino nella vita quotidiana, come diventano parte di un linguaggio condiviso. Per un social media marketer, questo è il terreno perfetto: capire come le persone interagiscono con i simboli che le circondano.</p>
+                </div>
+            </div>
+
+            <div class="text-slide" data-color="#00524a">
+                <div class="slide-content">
+                    <p>C’è poi un pannello pieno di biglietti, flyer e card (lo ammetto, le conservo tutte). Per me sono tracce di esperienze: concerti, mostre, eventi che ho vissuto. Non sono solo ricordi, ma case study personali. Perché un brand non lo capisci davvero solo sui libri: lo vivi, lo tocchi, lo vedi comunicare sul campo.</p>
+                </div>
+            </div>
+
+            <div class="text-slide" data-color="#6a0dad">
+                <div class="slide-content">
+                    <p>Alla fine, questo spazio non è solo una stanza: è un laboratorio creativo quotidiano. Qui si incontrano vita personale e professionale, la musica e i brand, la scrittura a mano e il digital. Ogni dettaglio diventa uno spunto, un pretesto per osservare, reinterpretare e trasformare in contenuto. È il mio modo di fare marketing: attingere da ciò che mi circonda e provare a raccontarlo in un linguaggio capace di arrivare alle persone.</p>
+                </div>
+            </div>
+
+            <div class="text-slide" data-color="#1a1a1a">
+                <div class="slide-content">
+                    <a href="index.html" class="cta-button">Torna al Portfolio</a>
+                </div>
+            </div>
+            
+            <nav class="slide-pagination"></nav>
+            <div class="scroll-indicator">SCORRI ↓</div>
+        </div>
+
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="room.js"></script>
+</body>
+</html>

@@ -1,0 +1,222 @@
+:root {
+    --bg-color-dark: #1a1a1a;
+    --text-color-light: #f0f0f0;
+    --accent-color: #FFD700;
+    --font-primary: 'Inter', sans-serif;
+    --font-secondary: 'Syne', sans-serif;
+    
+    --card-color-1: #00405c;
+    --card-color-2: #4a0e3a;
+    --card-color-3: #7d3c00;
+    --card-color-4: #00524a;
+    --card-color-5: #6a0dad;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--bg-color-dark);
+    color: var(--text-color-light);
+    overflow: hidden; 
+    cursor: none;
+}
+
+.cursor { 
+    position: fixed; width: 25px; height: 25px; 
+    border-radius: 50%; transform: translate(-50%, -50%); 
+    pointer-events: none; z-index: 100000;
+    background-color: white; mix-blend-mode: difference;
+    transition: width 0.3s ease, height 0.3s ease; 
+}
+.cursor-grow { width: 60px; height: 60px; }
+
+.page-transition-overlay {
+    position: fixed; top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background-color: #1a1a1a;
+    z-index: 99999;
+    pointer-events: none;
+    opacity: 1;
+}
+.page-transition-overlay.is-active { opacity: 1; }
+body:not(.is-transitioning) .page-transition-overlay { opacity: 0; transition: opacity 0.8s ease-in-out;}
+
+.room-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100vh;
+}
+
+/* Pannello Immagine (Sinistra) */
+.room-image-panel {
+    position: relative;
+    height: 100vh;
+    padding: 2rem;
+    display: flex;
+    gap: 1.5rem;
+}
+.panel-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    flex-shrink: 0;
+    width: 3.5rem; /* Manteniamo la barra stretta */
+    align-items: center;
+    position: relative; /* Necessario per posizionare il bottone */
+}
+
+.back-button {
+    position: absolute; /* Sganciato dal flusso */
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%); /* Centrato perfettamente sulla barra */
+    width: 4.5rem; /* Ora possiamo renderlo più grande */
+    aspect-ratio: 1 / 1;
+    padding: 0.75rem;
+    z-index: 10;
+    transition: transform 0.3s ease;
+    display: block;
+    border-radius: 50%;
+}
+.back-button:hover { 
+    transform: translateX(-50%) scale(1.1); /* Manteniamo il centraggio durante l'hover */
+}
+.back-button img { 
+    width: 100%; 
+    height: 100%; 
+    display: block; 
+}
+
+/* Aggiungiamo un po' di spazio sopra la barra per non farla toccare il logo */
+.marquee-container {
+    margin-top: 5rem; /* Spazio per il logo */
+    flex-grow: 1;
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    overflow: hidden;
+    position: relative;
+}
+.marquee-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    animation: moveUp 25s linear infinite;
+}
+.marquee-item {
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    font-family: var(--font-secondary);
+    font-weight: 700;
+    font-size: 2.2rem;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 2px;
+    white-space: nowrap;
+    text-align: center;
+    width: 100%;
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Pallino bianco rotondo nello spazio tra i blocchi */
+.marquee-item:not(:last-child)::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.8;
+}
+
+@keyframes moveUp {
+    from { transform: translateY(0); }
+    to { transform: translateY(-50%); }
+}
+
+.image-holder {
+    flex-grow: 1;
+    height: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    min-width: 0;
+}
+.image-holder img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Pannello Testo (Destra) */
+.room-text-panel {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    transition: background-color 1s ease;
+}
+.text-slide {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: flex; justify-content: center; align-items: center;
+    padding: 4rem;
+    transform: translateY(100%);
+    transition: transform 1s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.text-slide.active { transform: translateY(0); }
+.text-slide.exiting { transform: translateY(-100%); }
+
+.slide-content {
+    max-width: 500px; opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease 0.5s, transform 0.8s ease 0.5s;
+}
+.text-slide.active .slide-content { opacity: 1; transform: translateY(0); }
+.text-slide h1 { font-family: var(--font-secondary); font-size: clamp(2.5rem, 5vw, 3.5rem); color: var(--accent-color); margin-bottom: 1.5rem; line-height: 1.1; }
+.text-slide p { font-size: 1.1rem; line-height: 1.8; }
+.text-slide .intro-text p:not(:last-child) { margin-bottom: 1rem; }
+
+.cta-button {
+    background-color: var(--accent-color); color: #1a1a1a; display: inline-block;
+    padding: 1rem 2rem; border-radius: 50px; text-decoration: none;
+    font-weight: 600; transition: all 0.3s ease; border: 2px solid transparent;
+}
+.cta-button:hover { background-color: #e6c200; transform: translateY(-3px); }
+
+.scroll-indicator {
+    position: absolute; bottom: 2rem; left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-secondary); font-weight: 700;
+    color: var(--accent-color); letter-spacing: 1px;
+    animation: bounce 2s ease-in-out infinite;
+    transition: opacity 0.5s ease;
+}
+.scroll-indicator.hidden { opacity: 0; }
+@keyframes bounce {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, -10px); }
+}
+
+.slide-pagination {
+    position: absolute; right: 2rem; top: 50%;
+    transform: translateY(-50%);
+    display: flex; flex-direction: column; gap: 1rem;
+}
+.slide-pagination button {
+    width: 12px; height: 12px; border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.3);
+    border: none; cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.slide-pagination button.active { background-color: white; transform: scale(1.2); }
+
+@media (max-width: 900px) {
+    .room-container { grid-template-columns: 1fr; }
+    .room-image-panel { display: none; }
+    .text-slide { padding: 2rem; }
+    .back-button { position: fixed; }
+}
