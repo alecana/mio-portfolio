@@ -1,92 +1,133 @@
 document.addEventListener('DOMContentLoaded', () => {
     
     // SETUP DI BASE
-    const lenis = new Lenis({ lerp: 0.07 });
+    const lenis = new Lenis({
+        lerp: 0.07,
+        wrapper: window,
+        content: document.documentElement
+    });
     function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
     gsap.registerPlugin(ScrollTrigger);
 
-    // --- LOGICA CURSORE (CON MOVIMENTO FLUIDO GSAP) ---
-const cursor = document.querySelector('.cursor');
-if (cursor && window.matchMedia('(pointer: fine)').matches) {
-    
-    gsap.set(cursor, { xPercent: -50, yPercent: -50 });
-    window.addEventListener('mousemove', e => {
-gsap.to(cursor, { duration: 0.1, x: e.clientX, y: e.clientY });    });
+    // --- LOGICA CURSORE UNIFICATA CON GSAP ---
+    const cursor = document.querySelector('.cursor');
+    if (cursor && window.matchMedia('(pointer: fine)').matches) {
+        
+        gsap.set(cursor, { xPercent: -50, yPercent: -50 });
+        window.addEventListener('mousemove', e => {
+            gsap.to(cursor, { duration: 0.1, x: e.clientX, y: e.clientY });
+        });
 
-    const generalTriggers = document.querySelectorAll('a, button, .highlight-keyword, .close-viewer, .menu-toggle');
-    generalTriggers.forEach(el => {
-        el.addEventListener('mouseenter', () => gsap.to(cursor, { scale: 2.4, ease: "power2.out" }));
-        el.addEventListener('mouseleave', () => gsap.to(cursor, { scale: 1, ease: "power2.out" }));
-    });
-    
-    const projectMenuItems = document.querySelectorAll('.project-menu li');
-    projectMenuItems.forEach(item => {
-        const hoverColor = item.dataset.hoverColor;
-        item.addEventListener('mouseenter', () => {
-            if (hoverColor) {
+        // Trigger generici per link e bottoni
+        const generalTriggers = document.querySelectorAll('a, button, .highlight-keyword, .close-viewer, .menu-toggle');
+        generalTriggers.forEach(el => {
+            el.addEventListener('mouseenter', () => gsap.to(cursor, { scale: 2.4, ease: "power2.out" }));
+            el.addEventListener('mouseleave', () => gsap.to(cursor, { scale: 1, ease: "power2.out" }));
+        });
+        
+        // Trigger per i progetti con colore
+        const projectMenuItems = document.querySelectorAll('.project-menu li');
+        projectMenuItems.forEach(item => {
+            const hoverColor = item.dataset.hoverColor;
+            item.addEventListener('mouseenter', () => {
+                if (hoverColor) {
+                    gsap.to(cursor, { 
+                        scale: 2.4, 
+                        backgroundColor: hoverColor,
+                        mixBlendMode: 'normal',
+                        ease: "power2.out"
+                    });
+                }
+            });
+            item.addEventListener('mouseleave', () => {
                 gsap.to(cursor, { 
-                    scale: 2.4, 
-                    backgroundColor: hoverColor,
-                    mixBlendMode: 'normal',
+                    scale: 1, 
+                    backgroundColor: 'white',
+                    mixBlendMode: 'difference',
                     ease: "power2.out"
                 });
-            }
-        });
-        item.addEventListener('mouseleave', () => {
-            gsap.to(cursor, { 
-                scale: 1, 
-                backgroundColor: 'white',
-                mixBlendMode: 'difference',
-                ease: "power2.out"
             });
         });
+
+        // Trigger per la foto del profilo (mano)
+        const profileArea = document.querySelector('.profile-photo-area');
+        if (profileArea) {
+            profileArea.addEventListener('mouseenter', () => {
+                gsap.to(cursor, {
+                    width: 150, height: 150,
+                    backgroundImage: `url('images/mano.png')`,
+                    backgroundSize: 'contain',
+                    mixBlendMode: 'normal',
+                    backgroundColor: 'transparent',
+                    ease: 'power3.out'
+                });
+            });
+            profileArea.addEventListener('mouseleave', () => {
+                gsap.to(cursor, {
+                    width: 25, height: 25,
+                    backgroundImage: 'none',
+                    backgroundColor: 'white',
+                    mixBlendMode: 'difference',
+                    ease: 'power3.out'
+                });
+            });
+        }
+    }
+
+   // --- LOGICA CLICK FOTO PROFILO E TRANSIZIONE (CON NUOVA ANIMAZIONE "RIPPLE") ---
+const profileArea = document.querySelector('.profile-photo-area');
+const pageOverlay = document.querySelector('.page-transition-overlay');
+
+if (profileArea && pageOverlay) {
+    const knockSound = new Audio('audio/knock.mp3');
+    let isAudioUnlocked = false;
+
+    const unlockAudio = () => {
+        knockSound.play().then(() => {
+            knockSound.pause();
+            knockSound.currentTime = 0;
+            isAudioUnlocked = true;
+            document.body.removeEventListener('click', unlockAudio);
+        }).catch(() => {});
+    };
+    document.body.addEventListener('click', unlockAudio, { once: true });
+    
+    profileArea.addEventListener('click', (event) => {
+        event.preventDefault(); 
+        if (pageOverlay.classList.contains('is-active')) return;
+
+        // **NUOVA ANIMAZIONE "RIPPLE"**
+        if (cursor) {
+            const ripple = document.createElement('div');
+            ripple.className = 'ripple-effect';
+            document.body.appendChild(ripple);
+            
+            // Posiziona il ripple dove si trova il cursore
+            gsap.set(ripple, {
+                x: cursor.getBoundingClientRect().left + cursor.offsetWidth / 2,
+                y: cursor.getBoundingClientRect().top + cursor.offsetHeight / 2,
+            });
+
+            // Anima il ripple e il cursore
+            gsap.timeline()
+                .to(cursor, { scale: 1.2, duration: 0.2, ease: 'power2.out' })
+                .to(ripple, { scale: 1, opacity: 0, duration: 0.6, ease: 'power2.out', onComplete: () => ripple.remove() }, "-=0.1")
+                .to(cursor, { scale: 1, duration: 0.3, ease: 'power2.out' }, "-=0.4");
+        }
+
+        if(isAudioUnlocked) {
+            knockSound.currentTime = 0;
+            knockSound.play();
+        }
+        
+        pageOverlay.classList.add('is-active');
+        setTimeout(() => {
+            window.location.href = 'room.html';
+        }, 800);
     });
 }
 
-    // --- LOGICA FOTO PROFILO CON TRANSIZIONE A PAGINA ---
-    const profileArea = document.querySelector('.profile-photo-area');
-    const pageOverlay = document.querySelector('.page-transition-overlay');
-    
-    if (profileArea && pageOverlay && cursor) {
-        const knockSound = new Audio('audio/knock.mp3');
-        let isAudioUnlocked = false;
-
-        const unlockAudio = () => {
-            knockSound.play().then(() => {
-                knockSound.pause();
-                knockSound.currentTime = 0;
-                isAudioUnlocked = true;
-                document.body.removeEventListener('click', unlockAudio);
-            }).catch(() => {});
-        };
-        document.body.addEventListener('click', unlockAudio, { once: true });
-        
-        profileArea.addEventListener('mouseenter', () => {
-            cursor.classList.add('cursor-hand');
-        });
-
-        profileArea.addEventListener('mouseleave', () => {
-            cursor.classList.remove('cursor-hand');
-        });
-        
-        profileArea.addEventListener('click', (event) => {
-            event.preventDefault(); 
-            
-            if (pageOverlay.classList.contains('is-active')) return;
-
-            pageOverlay.classList.add('is-active');
-
-            if(isAudioUnlocked) {
-                knockSound.currentTime = 0;
-                knockSound.play();
-            }
-            
-            setTimeout(() => {
-                window.location.href = 'room.html';
-            }, 800);
-        });
-    }
 
     // GESTIONE MENU MOBILE
     const header = document.querySelector('header');
@@ -201,4 +242,65 @@ gsap.to(cursor, { duration: 0.1, x: e.clientX, y: e.clientY });    });
             }
         });
     }
+
+// --- NUOVO: LOGICA PER COPIARE L'EMAIL (CON NUOVO STILE E DURATA) ---
+const emailButtons = document.querySelectorAll('#contact-email-btn, #projects-email-btn');
+
+if (emailButtons.length > 0) {
+    const emailToCopy = 'aledrai98@gmail.com';
+    const successFlash = document.querySelector('.success-flash');
+
+    emailButtons.forEach(button => {
+        const originalText = button.textContent;
+        const originalStyles = {
+            backgroundColor: gsap.getProperty(button, "backgroundColor"),
+            color: gsap.getProperty(button, "color")
+        };
+
+        let isAnimating = false; // Flag per prevenire doppi click
+
+        button.addEventListener('click', (event) => {
+            event.preventDefault();
+            if (isAnimating) return; // Se l'animazione è in corso, non fare nulla
+            isAnimating = true;
+
+            navigator.clipboard.writeText(emailToCopy).then(() => {
+                
+                button.textContent = 'Email Copiata!';
+
+                // Animazione di feedback
+                const tl = gsap.timeline({
+                    onComplete: () => {
+                        // Resetta dopo 5 secondi
+                        setTimeout(() => {
+                            gsap.to(button, {
+                                backgroundColor: originalStyles.backgroundColor,
+                                color: originalStyles.color,
+                                duration: 0.5,
+                                onComplete: () => {
+                                    button.textContent = originalText;
+                                    isAnimating = false; // Rendi di nuovo cliccabile
+                                }
+                            });
+                        }, 5000); // 5 secondi di attesa
+                    }
+                });
+
+                tl.to(successFlash, { opacity: 0.8, duration: 0.15 })
+                  .to(button, { 
+                      backgroundColor: '#1a1a1a', // Sfondo nero
+                      color: '#ffffff', // Scritta bianca
+                      duration: 0.15 
+                  }, "<")
+                  .to(successFlash, { opacity: 0, duration: 0.3 })
+                  .to(button, { y: -10, duration: 0.1, ease: 'power2.out' }, "-=0.4")
+                  .to(button, { y: 0, duration: 0.3, ease: 'bounce.out' }, "-=0.3");
+
+            }).catch(err => {
+                console.error('Errore nel copiare l\'email: ', err);
+                isAnimating = false; // Resetta in caso di errore
+            });
+        });
+    });
+}
 });
