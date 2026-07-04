@@ -202,6 +202,40 @@ section h2 { font-family: var(--font-secondary); font-size: clamp(2.5rem, 5vw, 4
 .skills-marquee span { font-family: var(--font-secondary); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; color: #ddd; padding: 0 2rem; transition: color 0.3s ease; }
 .skills-marquee-wrapper:hover .skills-marquee span { color: var(--text-color); }
 
+/* --- SEZIONE FEEDBACK --- */
+#feedback { background-color: var(--bg-color); overflow: hidden; }
+.feedback-intro { text-align: center; max-width: 650px; margin: 0 auto; line-height: 1.7; color: #666; display: flex; align-items: center; justify-content: center; gap: .6rem; flex-wrap: wrap; }
+.feedback-logo-chip { display: inline-flex; align-items: center; }
+.feedback-logo-weroad { height: 26px; width: auto; display: block; }
+.feedback-logo-caffe { height: 24px; width: auto; display: block; border-radius: 50%; }
+
+.feedback-marquee-wrapper { display: flex; width: fit-content; margin-top: 3rem; }
+.feedback-marquee-wrapper.reverse { margin-top: 1.5rem; }
+.feedback-marquee-wrapper.reverse .feedback-marquee { animation-direction: reverse; }
+@keyframes feedback-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.feedback-marquee { display: flex; align-items: stretch; width: max-content; animation: feedback-scroll 80s linear infinite; }
+.feedback-marquee-wrapper:hover .feedback-marquee { animation-play-state: paused; }
+
+.feedback-card {
+    width: 400px; flex-shrink: 0; margin-right: 1.5rem;
+    background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 18px;
+    padding: 1.6rem; display: flex; flex-direction: column; justify-content: space-between; gap: 1.2rem;
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+.feedback-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,.08); }
+.feedback-card blockquote { font-size: .92rem; line-height: 1.65; color: #333; }
+.feedback-card figcaption { display: flex; align-items: center; gap: .9rem; }
+.feedback-card figcaption img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; border: 2px solid var(--hero-bg-color); }
+.feedback-card figcaption span { display: flex; flex-direction: column; line-height: 1.35; }
+.feedback-card figcaption strong { font-size: .95rem; }
+.feedback-card figcaption em { font-style: normal; font-size: .8rem; color: #777; }
+
+@media (max-width: 768px) {
+    .feedback-card { width: 300px; padding: 1.3rem; }
+    .feedback-card blockquote { font-size: .87rem; }
+    .feedback-marquee { animation-duration: 60s; }
+}
+
 /* --- VISUALIZZATORE PROGETTI --- */
 .project-viewer { 
     cursor: auto; 

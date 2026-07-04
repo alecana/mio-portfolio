@@ -155,6 +155,12 @@ if (profileArea && pageOverlay) {
         });
     }
 
+    // --- SEZIONE FEEDBACK: duplica le card per il loop infinito + reveal ---
+    document.querySelectorAll('.feedback-marquee').forEach(marquee => {
+        Array.from(marquee.children).forEach(card => marquee.appendChild(card.cloneNode(true)));
+    });
+    gsap.from("#feedback .container > *, #feedback .feedback-marquee-wrapper", { y: 50, autoAlpha: 0, stagger: 0.15, duration: 1, ease: "power3.out", scrollTrigger: { trigger: "#feedback", start: "top 75%" } });
+
     gsap.from("#skills, #contact, footer", { y: 50, autoAlpha: 0, duration: 1, ease: "power3.out", scrollTrigger: { trigger: "#skills", start: "top 85%" } });
     // --- LOGICA MODALE PROGETTI ---
     const projectViewer = document.querySelector('.project-viewer');
