@@ -165,7 +165,8 @@ if (profileArea && pageOverlay) {
     if (projectViewer) {
         let currentProjectIndex = 0;
         const projectCards = Array.from(document.querySelectorAll('.project-card-content'));
-        const projectData = Array.from(projectMenuItemsList).map(li => ({
+        // Solo i progetti che aprono il modale (quelli con data-href hanno una pagina dedicata)
+        const projectData = Array.from(projectMenuItemsList).filter(li => li.dataset.target).map(li => ({
             id: li.dataset.target,
             image: li.querySelector('img') ? li.querySelector('img').src : ''
         }));
@@ -225,7 +226,15 @@ if (profileArea && pageOverlay) {
             }, 50);
         };
 
-        projectMenuItemsList.forEach(item => item.addEventListener('click', () => openProject(item.dataset.target)));
+        projectMenuItemsList.forEach(item => item.addEventListener('click', () => {
+            // I progetti con data-href navigano alla loro pagina dedicata con transizione
+            if (item.dataset.href) {
+                if (pageOverlay) pageOverlay.classList.add('is-active');
+                setTimeout(() => { window.location.href = item.dataset.href; }, 800);
+                return;
+            }
+            openProject(item.dataset.target);
+        }));
         closeViewerBtn.addEventListener('click', closeProject);
         projectViewer.addEventListener('click', (e) => { if (e.target.classList.contains('project-viewer')) closeProject(); });
 
