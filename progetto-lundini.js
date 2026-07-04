@@ -40,26 +40,34 @@ window.addEventListener('DOMContentLoaded', () => {
         .to('.l-hero-title .line span', { y: 0, duration: 0.9, stagger: 0.12, ease: 'power4.out' })
         .to('.l-hero-sub', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
         .to('.l-hero-note', { opacity: 1, duration: 0.6 }, '-=0.2')
-        .fromTo('.sticker-1', { scale: 0, rotation: -60 }, { scale: 1, opacity: 1, rotation: -12, duration: 0.7, ease: 'back.out(2.5)' }, '-=0.6')
+        .fromTo('.sticker-1', { scale: 0, rotation: -60 }, { scale: 1, opacity: 1, rotation: -8, duration: 0.7, ease: 'back.out(2.5)' }, '-=0.6')
         .fromTo('.sticker-2', { scale: 0, rotation: 60 }, { scale: 1, opacity: 1, rotation: 9, duration: 0.7, ease: 'back.out(2.5)' }, '-=0.5');
 
     // Stickers fluttuanti
     gsap.to('.sticker-1', { y: -14, duration: 2.2, yoyo: true, repeat: -1, ease: 'sine.inOut', delay: 2 });
     gsap.to('.sticker-2', { y: 12, duration: 2.6, yoyo: true, repeat: -1, ease: 'sine.inOut', delay: 2.3 });
 
+    // --- HEADER: si nasconde scendendo, riappare salendo ---
+    const projectHeader = document.querySelector('.project-header');
+    let lastScrollY = 0;
+    lenis.on('scroll', ({ scroll }) => {
+        if (Math.abs(scroll - lastScrollY) < 10) return;
+        gsap.to(projectHeader, { yPercent: (scroll > lastScrollY && scroll > 150) ? -130 : 0, duration: 0.35, ease: 'power2.out', overwrite: 'auto' });
+        lastScrollY = scroll;
+    });
+
     // --- REVEAL GENERICO DELLE SEZIONI ---
-    gsap.utils.toArray('.l-section .l-container > *:not(.team-grid):not(.bars):not(.chat-mock):not(.goal-cards):not(.outro-box)').forEach(el => {
+    gsap.utils.toArray('.l-section .l-container > *:not(.bars):not(.chat-mock):not(.goal-cards):not(.outro-box):not(.disclaimer-box)').forEach(el => {
         gsap.from(el, {
             y: 45, autoAlpha: 0, duration: 0.9, ease: 'power3.out',
             scrollTrigger: { trigger: el, start: 'top 85%' }
         });
     });
 
-    // --- TEAM CARDS: entrano a raffica ---
-    gsap.from('.team-grid > *', {
-        y: 60, autoAlpha: 0, rotation: () => gsap.utils.random(-6, 6),
-        stagger: 0.12, duration: 0.7, ease: 'back.out(1.8)',
-        scrollTrigger: { trigger: '.team-grid', start: 'top 80%' }
+    // --- DISCLAIMER: entra con un timbro ---
+    gsap.from('.disclaimer-box', {
+        scale: 0.7, autoAlpha: 0, rotation: 6, duration: 0.7, ease: 'back.out(2)',
+        scrollTrigger: { trigger: '.disclaimer-box', start: 'top 85%' }
     });
 
     // --- TAGS: pop elastico ---

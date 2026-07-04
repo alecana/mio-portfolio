@@ -61,16 +61,16 @@ a, button { cursor: none; }
 }
 .project-header > * { pointer-events: auto; }
 .back-home {
-    display: flex; align-items: center; gap: .8rem;
+    display: flex; align-items: center; gap: .6rem;
     text-decoration: none; color: var(--l-dark);
-    font-family: var(--font-secondary); font-weight: 700; font-size: .9rem;
+    font-family: var(--font-secondary); font-weight: 700; font-size: .78rem;
     background: rgba(250, 243, 231, .85); backdrop-filter: blur(8px);
-    padding: .5rem 1.1rem .5rem .5rem; border-radius: 50px;
+    padding: .35rem .9rem .35rem .4rem; border-radius: 50px;
     border: 2px solid var(--l-dark);
     transition: transform .3s ease, background-color .3s ease;
 }
 .back-home:hover { transform: rotate(-2deg) scale(1.04); background: var(--l-yellow); }
-.back-home img { height: 36px; }
+.back-home img { height: 26px; }
 .header-badge {
     font-family: var(--font-secondary); font-weight: 800; font-size: .8rem;
     background: var(--l-dark); color: var(--l-cream);
@@ -115,7 +115,8 @@ a, button { cursor: none; }
 }
 .l-hero-title {
     font-family: var(--font-secondary); font-weight: 800;
-    font-size: clamp(3.2rem, 11vw, 9.5rem);
+    /* 9vw garantisce che "DIVENTATO" stia in una riga anche a 375px */
+    font-size: clamp(2.2rem, 9vw, 9.5rem);
     line-height: .95; color: var(--l-dark);
     letter-spacing: -0.02em;
 }
@@ -133,7 +134,6 @@ a, button { cursor: none; }
 }
 .l-hero-note { margin-top: 1rem; font-size: .85rem; color: rgba(26,26,26,.7); opacity: 0; }
 .l-hero-sticker {
-    position: absolute;
     font-family: var(--font-secondary); font-weight: 800; text-align: center;
     background: var(--l-yellow); color: var(--l-dark);
     border: 3px solid var(--l-dark); border-radius: 50%;
@@ -141,8 +141,10 @@ a, button { cursor: none; }
     box-shadow: 5px 5px 0 var(--l-dark);
     opacity: 0; z-index: 3;
 }
-.sticker-1 { width: 130px; height: 130px; top: 16%; left: 10%; font-size: 1.4rem; transform: rotate(-12deg); }
-.sticker-2 { width: 150px; height: 150px; bottom: 20%; right: 8%; font-size: .95rem; transform: rotate(9deg); background: var(--l-cream); }
+/* Il bollino P.E.D. sta nel flusso, sopra il titolo: non può mai sovrapporsi */
+.sticker-1 { width: 108px; height: 108px; font-size: 1.15rem; transform: rotate(-8deg); margin-bottom: 1.6rem; }
+/* Il bollino nonsense è ancorato in basso a destra, lontano dal titolo (solo schermi larghi) */
+.sticker-2 { position: absolute; width: 140px; height: 140px; bottom: 5%; right: 3%; font-size: .9rem; transform: rotate(9deg); background: var(--l-cream); }
 .scroll-down {
     position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
     font-family: var(--font-secondary); font-weight: 700; font-size: .85rem;
@@ -162,25 +164,18 @@ a, button { cursor: none; }
 .l-marquee span { font-family: var(--font-secondary); font-weight: 800; font-size: 1.3rem; letter-spacing: .05em; }
 @keyframes l-scroll { to { transform: translateX(-50%); } }
 
-/* ============ TEAM ============ */
-.team-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem;
-    margin-top: 4rem;
+/* ============ DISCLAIMER ============ */
+.disclaimer-box {
+    display: flex; align-items: flex-start; gap: 1rem;
+    max-width: 640px; margin-top: 3rem;
+    background: var(--l-yellow);
+    border: 3px dashed var(--l-dark); border-radius: 18px;
+    padding: 1.4rem 1.6rem;
+    box-shadow: 6px 6px 0 var(--l-dark);
+    transform: rotate(-1deg);
 }
-.team-intro { grid-column: 1 / 2; }
-.team-intro h3 { font-family: var(--font-secondary); font-weight: 800; font-size: 1.8rem; line-height: 1.1; margin-bottom: .8rem; }
-.team-intro p { line-height: 1.6; color: #555; }
-.team-card {
-    background: #fff; border: 3px solid var(--l-dark); border-radius: 18px;
-    padding: 1.4rem; box-shadow: 6px 6px 0 var(--l-dark);
-    display: flex; flex-direction: column; gap: .4rem;
-    transition: transform .25s ease, box-shadow .25s ease;
-}
-.team-card:hover { transform: translate(-3px, -3px) rotate(-1deg); box-shadow: 10px 10px 0 var(--l-dark); }
-.team-card.is-me { background: var(--l-yellow); grid-column: 2 / 4; }
-.team-part { font-family: var(--font-secondary); font-weight: 800; font-size: 1.2rem; }
-.team-name { font-weight: 700; }
-.team-role { font-size: .9rem; line-height: 1.5; color: #333; }
+.disclaimer-emoji { font-size: 1.8rem; line-height: 1; }
+.disclaimer-box p { font-size: .95rem; line-height: 1.6; }
 
 /* ============ PERSONA / TAGS ============ */
 .l-persona { background: var(--l-cream); }
@@ -280,7 +275,8 @@ a, button { cursor: none; }
 }
 .problem-title {
     font-family: var(--font-secondary); font-weight: 800;
-    font-size: clamp(3.5rem, 12vw, 10rem); line-height: .95;
+    /* 10vw tiene "DISTANTE." dentro anche a 375px */
+    font-size: clamp(2.2rem, 10vw, 10rem); line-height: .95;
     color: var(--l-cream); text-shadow: 8px 8px 0 var(--l-dark);
 }
 .problem-text { margin-top: 2rem; font-size: clamp(1.05rem, 2vw, 1.4rem); line-height: 1.7; max-width: 640px; }
@@ -354,10 +350,10 @@ a, button { cursor: none; }
 .outro-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin: 2rem 0; }
 .l-btn {
     display: inline-block; text-decoration: none;
-    font-family: var(--font-secondary); font-weight: 800; font-size: 1rem;
+    font-family: var(--font-secondary); font-weight: 800; font-size: .95rem;
     background: var(--l-pink); color: #fff;
     border: 3px solid var(--l-dark); border-radius: 999px;
-    padding: 1rem 2.2rem; box-shadow: 5px 5px 0 var(--l-dark);
+    padding: .85rem 1.8rem; box-shadow: 5px 5px 0 var(--l-dark);
     transition: transform .25s ease, box-shadow .25s ease;
 }
 .l-btn:hover { transform: translate(-2px, -3px); box-shadow: 8px 9px 0 var(--l-dark); }
@@ -370,19 +366,52 @@ a, button { cursor: none; }
 }
 
 /* ============ RESPONSIVE ============ */
+/* Sotto i 1100px non c'è abbastanza spazio libero negli angoli: via il bollino assoluto */
+@media (max-width: 1100px) {
+    .sticker-2 { display: none; }
+}
+
 @media (max-width: 900px) {
     .l-section { padding: 6rem 0; }
-    .team-grid { grid-template-columns: 1fr; }
-    .team-card.is-me { grid-column: auto; }
     .jester-grid { grid-template-columns: 1fr; gap: 3rem; }
     .goal-cards { grid-template-columns: 1fr; }
     .bar-row { grid-template-columns: 1fr; gap: .4rem; }
     .bar-label { text-align: left; }
-    .sticker-1 { width: 90px; height: 90px; font-size: 1rem; top: 12%; left: 4%; }
-    .sticker-2 { width: 100px; height: 100px; font-size: .7rem; bottom: 14%; right: 4%; }
     .formats-track {
         width: auto; flex-direction: column; align-items: center; padding: 0 1.5rem 2rem;
     }
     .format-card { width: 100%; max-width: 420px; }
     .header-badge { display: none; }
+
+    /* Header compatto: solo il logo, niente testo */
+    .project-header { padding: .8rem 1rem; }
+    .back-home .back-text { display: none; }
+    .back-home { padding: .3rem; gap: 0; }
+    .back-home img { height: 30px; }
+
+    .l-hero { padding: 6rem 1.5rem 5rem; }
+    .l-hero-sub br { display: none; }
+    .sticker-1 { width: 88px; height: 88px; font-size: .95rem; margin-bottom: 1.2rem; }
+
+    .l-heading { font-size: clamp(1.9rem, 8vw, 2.6rem); }
+    .l-container { padding: 0 1.4rem; }
+
+    .disclaimer-box { padding: 1.1rem 1.2rem; }
+    .disclaimer-box p { font-size: .88rem; }
+
+    .chat-mock { padding: 1.1rem; }
+    .jester-card { transform: rotate(-1.5deg); padding: 2.2rem 1.5rem; }
+    .l-quote { font-size: 1.1rem; padding-left: 1.1rem; border-left-width: 4px; }
+
+    .bar-track { height: 28px; }
+    .kpi-chips span { font-size: .78rem; padding: .4rem .85rem; }
+
+    .outro-box { padding: 2.4rem 1.4rem; border-radius: 20px; }
+    .outro-title { font-size: 2rem; }
+    .outro-actions { flex-direction: column; align-items: stretch; }
+    .l-btn { text-align: center; font-size: .9rem; padding: .8rem 1.4rem; }
+
+    .problem-title { text-shadow: 5px 5px 0 var(--l-dark); }
+    .stamp { white-space: normal; text-align: center; max-width: 92vw; }
+    .l-marquee span { font-size: 1.05rem; }
 }
