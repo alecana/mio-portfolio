@@ -40,12 +40,12 @@ window.addEventListener('DOMContentLoaded', () => {
         .to('.a-hero-title .line span', { y: 0, duration: 0.9, stagger: 0.12, ease: 'power4.out' })
         .to('.a-hero-sub', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
         .to('.a-hero-note', { opacity: 1, duration: 0.6 }, '-=0.2')
-        .fromTo('.sticker-1', { scale: 0, rotation: -60 }, { scale: 1, opacity: 1, rotation: -8, duration: 0.7, ease: 'back.out(2.5)' }, '-=0.6')
-        .fromTo('.sticker-2', { scale: 0, rotation: 60 }, { scale: 1, opacity: 1, rotation: 7, duration: 0.7, ease: 'back.out(2.5)' }, '-=0.5');
+        .fromTo('.sticker-1', { scale: 0.6 }, { scale: 1, opacity: 1, duration: 0.6, ease: 'back.out(1.8)' }, '-=0.6')
+        .fromTo('.sticker-2', { scale: 0.6 }, { scale: 1, opacity: 1, duration: 0.6, ease: 'back.out(1.8)' }, '-=0.45');
 
-    // Stickers fluttuanti
-    gsap.to('.sticker-1', { y: -14, duration: 2.2, yoyo: true, repeat: -1, ease: 'sine.inOut', delay: 2 });
-    gsap.to('.sticker-2', { y: 12, duration: 2.6, yoyo: true, repeat: -1, ease: 'sine.inOut', delay: 2.3 });
+    // Stickers fluttuanti (movimento morbido, niente rotazione)
+    gsap.to('.sticker-1', { y: -10, duration: 2.6, yoyo: true, repeat: -1, ease: 'sine.inOut', delay: 2 });
+    gsap.to('.sticker-2', { y: 10, duration: 3, yoyo: true, repeat: -1, ease: 'sine.inOut', delay: 2.3 });
 
     // --- HEADER: si nasconde scendendo, riappare salendo ---
     const projectHeader = document.querySelector('.project-header');
@@ -64,15 +64,15 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- DISCLAIMER: entra con un timbro ---
+    // --- DISCLAIMER ---
     gsap.from('.disclaimer-box', {
-        scale: 0.7, autoAlpha: 0, rotation: 6, duration: 0.7, ease: 'back.out(2)',
+        y: 24, autoAlpha: 0, duration: 0.7, ease: 'power3.out',
         scrollTrigger: { trigger: '.disclaimer-box', start: 'top 85%' }
     });
 
-    // --- GOAL CHIPS: pop elastico ---
+    // --- GOAL CHIPS: comparsa morbida a raffica ---
     gsap.from('.goal-chip', {
-        scale: 0, autoAlpha: 0, stagger: 0.1, duration: 0.6, ease: 'back.out(2.5)',
+        y: 16, autoAlpha: 0, stagger: 0.08, duration: 0.5, ease: 'power2.out',
         scrollTrigger: { trigger: '.goal-chips', start: 'top 85%' }
     });
 
@@ -187,8 +187,8 @@ window.addEventListener('DOMContentLoaded', () => {
         nextBtn.textContent = isLast ? (completed.has(currentKey) ? 'Funnel completato ✓' : 'Completa il funnel ✓') : 'Avanti →';
 
         if (animate) {
-            gsap.fromTo('.ig-post', { rotation: -4, scale: 0.94, autoAlpha: 0.4 }, { rotation: -1.5, scale: 1, autoAlpha: 1, duration: 0.45, ease: 'back.out(1.8)' });
-            gsap.fromTo('.funnel-text > *', { y: 18, autoAlpha: 0 }, { y: 0, autoAlpha: 1, stagger: 0.07, duration: 0.4, ease: 'power2.out' });
+            gsap.fromTo('.ig-post', { scale: 0.96, autoAlpha: 0.4 }, { scale: 1, autoAlpha: 1, duration: 0.4, ease: 'power2.out' });
+            gsap.fromTo('.funnel-text > *', { y: 16, autoAlpha: 0 }, { y: 0, autoAlpha: 1, stagger: 0.07, duration: 0.4, ease: 'power2.out' });
         }
     }
 
@@ -206,8 +206,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
         if (completed.size === 3) {
             trophyBox.hidden = false;
-            gsap.fromTo(trophyBox, { scale: 0.7, autoAlpha: 0, rotation: -4 }, { scale: 1, autoAlpha: 1, rotation: 0, duration: 0.7, ease: 'back.out(1.8)' });
-            gsap.fromTo('.trophy-emoji', { rotation: -20 }, { rotation: 20, duration: 0.12, repeat: 5, yoyo: true, clearProps: 'rotation', delay: 0.4 });
+            gsap.fromTo(trophyBox, { scale: 0.9, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 0.6, ease: 'back.out(1.6)' });
+            gsap.fromTo('.trophy-emoji', { scale: 0.5 }, { scale: 1, duration: 0.6, ease: 'back.out(2.5)', delay: 0.2 });
             lenis.scrollTo(trophyBox, { offset: -140 });
         }
         ScrollTrigger.refresh();
