@@ -1,5 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
+
+    // --- ETÀ DINAMICA: si aggiorna da sola ogni 25 ottobre (compleanno) ---
+    const ageEl = document.getElementById('dynamic-age');
+    if (ageEl) {
+        const birthDate = new Date(2004, 9, 25); // 25 ottobre 2004
+        const today = new Date();
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const compleannoGiaFesteggiato = (today.getMonth() > birthDate.getMonth()) ||
+            (today.getMonth() === birthDate.getMonth() && today.getDate() >= birthDate.getDate());
+        if (!compleannoGiaFesteggiato) age--;
+        ageEl.textContent = age;
+    }
+
     // SETUP DI BASE
     const lenis = new Lenis({
         lerp: 0.07,
