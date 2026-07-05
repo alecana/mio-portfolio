@@ -159,13 +159,16 @@ section h2 { font-family: var(--font-secondary); font-size: clamp(2.5rem, 5vw, 4
 
 /* --- STILI FOTO PROFILO OTTIMIZZATI --- */
 .profile-photo-area { position: relative; width: 100%; max-width: 400px; aspect-ratio: 1 / 1; display: flex; justify-content: center; align-items: center; cursor: none; }
-.about-image-wrapper { position: absolute; width: 100%; height: 100%; border-radius: 50%; overflow: hidden; border: 3px solid #f0f0f0; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); transition: transform 0.4s ease; }
-.about-image-wrapper img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* Il cerchio (bordo/ombra) resta sempre fermo: a muoversi è solo la foto dentro. */
+.about-image-wrapper { position: absolute; width: 100%; height: 100%; border-radius: 50%; overflow: hidden; border: 3px solid #f0f0f0; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); }
+/* scale(1.15) di base: dà margine alla foto per spostarsi dentro il cerchio
+   senza mai scoprire un bordo vuoto. Niente CSS transition: la anima GSAP in script.js. */
+.about-image-wrapper img { width: 100%; height: 100%; object-fit: cover; display: block; transform: scale(1.15); will-change: transform; }
 .about-image-wrapper::after { content: 'clicca per bussare'; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--hero-bg-color); opacity: 0; transition: opacity 0.4s ease; pointer-events: none; display: flex; justify-content: center; align-items: center; font-family: var(--font-secondary); font-weight: 700; font-size: 1.2rem; color: #1a1a1a; }
 .interactive-elements { position: absolute; width: 115%; height: 115%; pointer-events: none; transition: transform 0.4s ease; }
 .circling-text { width: 100%; height: 100%; animation: rotate-text 25s linear infinite; overflow: visible; }
 @keyframes rotate-text { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-.profile-photo-area:hover .about-image-wrapper, .profile-photo-area:hover .interactive-elements { transform: scale(1.05); }
+.profile-photo-area:hover .interactive-elements { transform: scale(1.05); }
 .profile-photo-area:hover .about-image-wrapper::after { opacity: 0.85; }
 
 /* --- SEZIONE PROCESSO TESTUALE --- */

@@ -140,6 +140,38 @@ if (profileArea && pageOverlay) {
     });
 }
 
+// --- EFFETTO FISHEYE NEL PALLINO PROFILO: il cerchio resta fermo, la foto dentro si sposta verso il cursore ---
+const tiltArea = document.querySelector('.profile-photo-area');
+const tiltImg = document.querySelector('.about-image-wrapper img');
+if (tiltArea && tiltImg && window.matchMedia('(pointer: fine)').matches) {
+    const MAX_SHIFT = 22;     // px massimi di spostamento della foto dentro il cerchio
+    const SENSITIVITY = 18;   // più basso = reagisce di più al movimento del cursore
+    const BASE_SCALE = 1.15;  // deve combaciare con lo scale(1.15) di base in CSS
+    let isHoveringTilt = false;
+
+    window.addEventListener('mousemove', (e) => {
+        const rect = tiltArea.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const dx = e.clientX - centerX;
+        const dy = e.clientY - centerY;
+
+        // la foto si sposta nella direzione opposta al cursore: dà l'illusione che la testa "punti" verso di lui
+        const shiftX = gsap.utils.clamp(-MAX_SHIFT, MAX_SHIFT, -dx / SENSITIVITY);
+        const shiftY = gsap.utils.clamp(-MAX_SHIFT, MAX_SHIFT, -dy / SENSITIVITY);
+
+        gsap.to(tiltImg, {
+            x: shiftX, y: shiftY,
+            scale: isHoveringTilt ? BASE_SCALE * 1.06 : BASE_SCALE,
+            duration: 0.6, ease: 'power3.out',
+            overwrite: 'auto'
+        });
+    });
+
+    tiltArea.addEventListener('mouseenter', () => { isHoveringTilt = true; });
+    tiltArea.addEventListener('mouseleave', () => { isHoveringTilt = false; });
+}
+
 
     // GESTIONE MENU MOBILE
     const header = document.querySelector('header');
