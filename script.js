@@ -196,8 +196,28 @@ if (profileArea && pageOverlay) {
             gsap.to(btn, { y: gsap.utils.random(-7, 7), duration: gsap.utils.random(1.8, 3), yoyo: true, repeat: -1, ease: 'sine.inOut', delay: gsap.utils.random(0, 1.5) });
 
             if (cursor && window.matchMedia('(pointer: fine)').matches) {
-                btn.addEventListener('mouseenter', () => gsap.to(cursor, { scale: 2.4, ease: 'power2.out' }));
-                btn.addEventListener('mouseleave', () => gsap.to(cursor, { scale: 1, ease: 'power2.out' }));
+                btn.addEventListener('mouseenter', () => {
+                    gsap.to(cursor, {
+                        width: 100, height: 100, scale: 1,
+                        backgroundImage: `url('${p.img}')`,
+                        backgroundSize: 'cover', backgroundPosition: 'center',
+                        borderRadius: '50%',
+                        mixBlendMode: 'normal',
+                        backgroundColor: 'transparent',
+                        boxShadow: '0 0 0 3px var(--hero-bg-color)',
+                        ease: 'power3.out'
+                    });
+                });
+                btn.addEventListener('mouseleave', () => {
+                    gsap.to(cursor, {
+                        width: 25, height: 25,
+                        backgroundImage: 'none',
+                        boxShadow: 'none',
+                        backgroundColor: 'white',
+                        mixBlendMode: 'difference',
+                        ease: 'power3.out'
+                    });
+                });
             }
 
             btn.addEventListener('click', () => selectPerson(i));
