@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vivi le Meraviglie Nascoste — Airbnb | Alessandro Canalicchio</title>
+
+    <link rel="icon" type="image/png" href="images/alecana-logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Syne:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="progetto-airbnb.css">
+</head>
+<body class="airbnb-page">
+
+    <div class="cursor"></div>
+    <div class="page-transition-overlay is-active"></div>
+
+    <header class="project-header">
+        <a href="index.html" class="back-home" aria-label="Torna al portfolio">
+            <img src="images/alecana-logo.png" alt="Logo">
+            <span class="back-text">← torna al portfolio</span>
+        </a>
+        <div class="header-badge">PROGETTO D'ESAME</div>
+    </header>
+
+    <!-- ============ HERO ============ -->
+    <section class="a-hero">
+        <div class="a-hero-inner">
+            <div class="a-hero-text">
+                <h1 class="a-hero-title">
+                    <span class="line"><span>VIVI LE</span></span>
+                    <span class="line"><span>MERAVIGLIE</span></span>
+                    <span class="line nascoste-line"><span>NASCOSTE</span></span>
+                </h1>
+                <p class="a-hero-sub">Una campagna full-funnel immaginata per Airbnb, <br>dalla scoperta alla prenotazione.</p>
+                <p class="a-hero-note">*mentre leggi questa riga, qualcuno sta già prenotando. Scorri.</p>
+            </div>
+            <div class="a-hero-stickers">
+                <div class="a-hero-sticker sticker-1">FULL<br>FUNNEL</div>
+                <div class="a-hero-sticker sticker-2">3 target,<br>1 campagna</div>
+            </div>
+        </div>
+        <div class="scroll-down">SCORRI ↓</div>
+    </section>
+
+    <div class="a-marquee-strip">
+        <div class="a-marquee">
+            <span>MERAVIGLIE NASCOSTE</span><span>★</span><span>FULL FUNNEL</span><span>★</span><span>FOMO MARKETING</span><span>★</span><span>PROGETTO D'ESAME 2024</span><span>★</span>
+            <span>MERAVIGLIE NASCOSTE</span><span>★</span><span>FULL FUNNEL</span><span>★</span><span>FOMO MARKETING</span><span>★</span><span>PROGETTO D'ESAME 2024</span><span>★</span>
+        </div>
+    </div>
+
+    <!-- ============ IL PROGETTO ============ -->
+    <section class="a-section a-brief">
+        <div class="a-container">
+            <span class="a-kicker">// IL PROGETTO</span>
+            <h2 class="a-heading">Trasformare la paura di perdersi qualcosa in una <span class="scribble">strategia</span>.</h2>
+            <p class="a-text">Dicembre 2024, esame di digital marketing. La consegna: costruire per Airbnb una <strong>campagna social completa su Instagram</strong>, dalla strategia alla pubblicazione. Come Digital Marketing Strategist ho curato strategia, analisi dei dati, creatività e tutti gli asset grafici.</p>
+            <p class="a-text">Il concept parte da due intuizioni: la <strong>FOMO</strong>, la paura di perdersi il viaggio giusto, e le <strong>meraviglie nascoste</strong>, mete poco conosciute che costano meno e sorprendono di più.</p>
+
+            <div class="disclaimer-box" data-wiggle>
+                <span class="disclaimer-emoji">⚠️</span>
+                <p><strong>Disclaimer (legale ma simpatico):</strong> questo è un progetto accademico: Airbnb non mi ha commissionato niente e non sa che esisto. Nessun host è stato disturbato durante la realizzazione.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ L'ANALISI ============ -->
+    <section class="a-section a-analysis">
+        <div class="a-container">
+            <span class="a-kicker">// L'ANALISI</span>
+            <h2 class="a-heading">Tre pubblici, una paura in comune.</h2>
+            <p class="a-text">Dai dati (simulati) del 2024 il pubblico si divide in tre gruppi: <strong>famiglie, coppie e gruppi di amici</strong>. E le mete nascoste, da Ksamil a Durazzo, da Gili Air a Svolvær, costano meno delle solite capitali e rendono di più in termini di attenzione.</p>
+            <div class="goal-chips">
+                <span class="goal-chip" data-wiggle>🎯 +15/20% conversioni</span>
+                <span class="goal-chip" data-wiggle>📥 5.000 lead/mese</span>
+                <span class="goal-chip" data-wiggle>💬 Engagement +25%</span>
+                <span class="goal-chip" data-wiggle>📡 Copertura 5M/mese</span>
+                <span class="goal-chip" data-wiggle>💰 ROAS 3:1</span>
+            </div>
+            <p class="a-chips-caption">Gli obiettivi dichiarati in fase di brief. Ambiziosi? Sì. Ma la FOMO fa miracoli.</p>
+        </div>
+    </section>
+
+    <!-- ============ GAME: SCEGLI IL TUO TARGET ============ -->
+    <section class="a-game" id="game">
+        <div class="a-container">
+            <span class="a-kicker">// IL FUNNEL, MA GIOCATO</span>
+            <h2 class="a-heading">Scegli il tuo target.</h2>
+            <p class="a-text">Tre pubblici, tre funnel, dodici asset reali della campagna. Scegli un target e percorri i suoi 4 livelli, dal primo post all'offerta finale. Riesci a completarli tutti e tre?</p>
+
+            <div class="game-progress">
+                <span class="game-progress-label"><span id="progress-count">0</span>/3 funnel completati</span>
+                <div class="game-progress-track"><div class="game-progress-fill" id="progress-fill"></div></div>
+            </div>
+
+            <div class="target-cards">
+                <button class="target-card" data-target-key="coppie">
+                    <span class="target-check">✓</span>
+                    <span class="target-emoji">💑</span>
+                    <h3>COPPIE</h3>
+                    <span class="target-funnel-name">Secret Escapes</span>
+                    <span class="target-meta">20-35 anni · 70-100€/notte</span>
+                </button>
+                <button class="target-card" data-target-key="amici">
+                    <span class="target-check">✓</span>
+                    <span class="target-emoji">🍹</span>
+                    <h3>AMICI</h3>
+                    <span class="target-funnel-name">Unexplored Vibes</span>
+                    <span class="target-meta">18-30 anni · 20-40€/notte</span>
+                </button>
+                <button class="target-card" data-target-key="famiglie">
+                    <span class="target-check">✓</span>
+                    <span class="target-emoji">👨‍👩‍👧</span>
+                    <h3>FAMIGLIE</h3>
+                    <span class="target-funnel-name">Family Discovery</span>
+                    <span class="target-meta">35-50 anni · 50-70€/notte</span>
+                </button>
+            </div>
+
+            <div class="funnel-panel" id="funnel-panel" hidden>
+                <div class="funnel-head">
+                    <h3 class="funnel-title" id="funnel-title">Secret Escapes</h3>
+                    <p class="funnel-dest" id="funnel-dest">Phuket · Cappadocia · Budapest · Girona · Cinque Terre</p>
+                </div>
+                <div class="funnel-steps" id="funnel-steps">
+                    <button class="funnel-step" data-step="0"><span class="step-num">①</span><span class="step-name">HOOK</span></button>
+                    <button class="funnel-step" data-step="1"><span class="step-num">②</span><span class="step-name">GUIDA GRATUITA</span></button>
+                    <button class="funnel-step" data-step="2"><span class="step-num">③</span><span class="step-name">REMARKETING</span></button>
+                    <button class="funnel-step" data-step="3"><span class="step-num">④</span><span class="step-name">OFFERTA -15%</span></button>
+                </div>
+                <div class="funnel-content">
+                    <div class="ig-post" id="ig-post">
+                        <div class="ig-head">
+                            <span class="ig-avatar"></span>
+                            <span class="ig-name">airbnb</span>
+                            <span class="ig-dots">•••</span>
+                        </div>
+                        <img class="ig-img" id="ig-img" src="images/airbnb/hook-coppie.jpg" alt="Asset Instagram della campagna">
+                        <div class="ig-actions"><span>♥</span><span>💬</span><span>⌲</span><span class="ig-save">🔖</span></div>
+                    </div>
+                    <div class="funnel-text">
+                        <span class="funnel-step-tag" id="funnel-step-tag">LIVELLO 1 · AWARENESS</span>
+                        <h4 class="funnel-step-title" id="funnel-step-title">Hook</h4>
+                        <p class="funnel-step-desc" id="funnel-step-desc"></p>
+                        <button class="a-btn funnel-next" id="funnel-next">Avanti →</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="trophy-box" id="trophy-box" hidden>
+                <span class="trophy-emoji">🏆</span>
+                <h3>3/3 funnel completati</h3>
+                <p>Hai esplorato tutta la campagna, dalla awareness alla conversione. La FOMO funziona anche sui portfolio.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ LE METE PIÙ CALDE ============ -->
+    <section class="a-section a-hot">
+        <div class="a-container">
+            <span class="a-kicker">// I RISULTATI (SIMULATI)</span>
+            <h2 class="a-heading">Le mete più calde.</h2>
+            <p class="a-text">La classifica dei post per <strong>CTR simulato</strong>: le mete nascoste battono le solite note, e di parecchio. La media di settore su Meta si ferma sotto il 2%.</p>
+            <div class="bars">
+                <div class="bar-row">
+                    <span class="bar-label">Tenerife</span>
+                    <div class="bar-track"><div class="bar-fill" data-w="95" style="--c:#ff385c"></div></div>
+                    <span class="bar-note">CTR 12,2% 🌋</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-label">Ksamil</span>
+                    <div class="bar-track"><div class="bar-fill" data-w="79" style="--c:#ff7a8f"></div></div>
+                    <span class="bar-note">CTR 10,1% 🏖️</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-label">Algeri</span>
+                    <div class="bar-track"><div class="bar-fill" data-w="70" style="--c:#7a5cff"></div></div>
+                    <span class="bar-note">CTR 8,9% 🕌</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-label">Budapest</span>
+                    <div class="bar-track"><div class="bar-fill" data-w="65" style="--c:#00b3a4"></div></div>
+                    <span class="bar-note">CTR 8,3% 🛁</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-label">Cinque Terre</span>
+                    <div class="bar-track"><div class="bar-fill" data-w="62" style="--c:#ff9f1c"></div></div>
+                    <span class="bar-note">CTR 8% 🌈</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ OUTRO ============ -->
+    <section class="a-section a-outro">
+        <div class="a-container">
+            <span class="a-kicker">// E POI?</span>
+            <h2 class="a-heading">Dalla scoperta<br>alla prenotazione.</h2>
+            <p class="a-text">Ogni fase del funnel alimenta la successiva: chi vede il post scarica la guida, chi scarica la guida riceve il remarketing, chi riceve l'offerta prenota. Il resto è monitoraggio settimanale e piccoli aggiustamenti continui.</p>
+
+            <div class="outro-box">
+                <h3 class="outro-title">DOMANDE?</h3>
+                <p>Questo era il mio modo di trasformare una campagna d'esame in un piccolo gioco. Se ti è venuta voglia di lavorare con me (o anche solo di prenotare a Ksamil, legittimo), sai dove trovarmi.</p>
+                <div class="outro-actions">
+                    <a href="index.html#projects" class="a-btn">← Tutti i progetti</a>
+                    <a href="index.html#contact" class="a-btn a-btn-ghost">Contattami</a>
+                </div>
+                <p class="outro-credits"><em>nessuna meraviglia è stata svelata senza consenso</em></p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="a-footer">
+        <p>© 2024 Alessandro Canalicchio. Tutti i diritti riservati.</p>
+    </footer>
+
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="progetto-airbnb.js"></script>
+</body>
+</html>
