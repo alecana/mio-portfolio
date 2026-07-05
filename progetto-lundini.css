@@ -294,6 +294,7 @@ a, button { cursor: none; }
 }
 
 /* ============ STRATEGY ============ */
+/* il margin-bottom del testo sopra collassa dentro questi 3rem: stacco identico a card→KPI */
 .goal-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
 .goal-card {
     background: #fff; border: 3px solid var(--l-dark); border-radius: 20px;
@@ -309,7 +310,8 @@ a, button { cursor: none; }
 .goal-card p { line-height: 1.6; font-size: .95rem; color: #444; }
 .kpi-strip {
     display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
-    gap: .8rem; margin-top: 3.5rem;
+    /* stessa distanza che c'è tra il testo e le card: tutto equidistante */
+    gap: .8rem; margin-top: 3rem;
     background: #fff; border: 3px solid var(--l-dark); border-radius: 999px;
     padding: 1rem 1.6rem; box-shadow: 5px 5px 0 var(--l-dark);
     width: fit-content; margin-left: auto; margin-right: auto;

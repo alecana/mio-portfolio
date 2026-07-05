@@ -141,9 +141,10 @@ window.addEventListener('DOMContentLoaded', () => {
     });
     gsap.to('.sad-face', { rotation: 90, y: -8, duration: 1.6, yoyo: true, repeat: -1, ease: 'sine.inOut' });
 
-    // --- GOAL CARDS (y contenuto: durante l'animazione non devono coprire la striscia KPI) ---
+    // --- GOAL CARDS: pop in scala, nessuno spostamento verticale
+    // (se il tween viene interrotto a metà le card restano comunque allineate) ---
     gsap.from('.goal-card', {
-        y: 40, autoAlpha: 0, rotation: -3, stagger: 0.12, duration: 0.6, ease: 'back.out(1.4)',
+        scale: 0.9, autoAlpha: 0, stagger: 0.12, duration: 0.55, ease: 'back.out(1.7)',
         scrollTrigger: { trigger: '.goal-cards', start: 'top 82%' }
     });
     gsap.from('.kpi-strip', {
