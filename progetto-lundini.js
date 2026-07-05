@@ -41,7 +41,7 @@ window.addEventListener('DOMContentLoaded', () => {
         .to('.l-hero-sub', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
         .to('.l-hero-note', { opacity: 1, duration: 0.6 }, '-=0.2')
         .fromTo('.sticker-1', { scale: 0, rotation: -60 }, { scale: 1, opacity: 1, rotation: -8, duration: 0.7, ease: 'back.out(2.5)' }, '-=0.6')
-        .fromTo('.sticker-2', { scale: 0, rotation: 60 }, { scale: 1, opacity: 1, rotation: 9, duration: 0.7, ease: 'back.out(2.5)' }, '-=0.5');
+        .fromTo('.sticker-2', { scale: 0, rotation: 60 }, { scale: 1, opacity: 1, rotation: 7, duration: 0.7, ease: 'back.out(2.5)' }, '-=0.5');
 
     // Stickers fluttuanti
     gsap.to('.sticker-1', { y: -14, duration: 2.2, yoyo: true, repeat: -1, ease: 'sine.inOut', delay: 2 });
@@ -57,7 +57,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- REVEAL GENERICO DELLE SEZIONI ---
-    gsap.utils.toArray('.l-section .l-container > *:not(.bars):not(.chat-mock):not(.goal-cards):not(.outro-box):not(.disclaimer-box)').forEach(el => {
+    gsap.utils.toArray('.l-section .l-container > *:not(.bars):not(.chat-mock):not(.goal-cards):not(.outro-box):not(.disclaimer-box):not(.kpi-strip)').forEach(el => {
         gsap.from(el, {
             y: 45, autoAlpha: 0, duration: 0.9, ease: 'power3.out',
             scrollTrigger: { trigger: el, start: 'top 85%' }
@@ -141,10 +141,14 @@ window.addEventListener('DOMContentLoaded', () => {
     });
     gsap.to('.sad-face', { rotation: 90, y: -8, duration: 1.6, yoyo: true, repeat: -1, ease: 'sine.inOut' });
 
-    // --- GOAL CARDS ---
+    // --- GOAL CARDS (y contenuto: durante l'animazione non devono coprire la striscia KPI) ---
     gsap.from('.goal-card', {
-        y: 70, autoAlpha: 0, rotation: -4, stagger: 0.15, duration: 0.8, ease: 'back.out(1.6)',
+        y: 40, autoAlpha: 0, rotation: -3, stagger: 0.12, duration: 0.6, ease: 'back.out(1.4)',
         scrollTrigger: { trigger: '.goal-cards', start: 'top 82%' }
+    });
+    gsap.from('.kpi-strip', {
+        scale: 0.85, autoAlpha: 0, duration: 0.6, ease: 'back.out(1.8)',
+        scrollTrigger: { trigger: '.kpi-strip', start: 'top 88%' }
     });
 
     // --- FORMATS: scroll orizzontale (solo desktop) ---
